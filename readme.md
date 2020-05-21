@@ -72,7 +72,7 @@ query demo {
 
 Crypt a password or error on empty string.
 
-```
+```graphql
 type Query {
   crypt (
     password: String!
