@@ -2,6 +2,7 @@ package crypt
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 
 	"github.com/sanderhahn/htpasswd/wrap"
@@ -32,20 +33,22 @@ func Crypt(w wrap.ResponseWriter, r *wrap.Request) {
 		return
 	}
 
-	in := []byte(input.Password)
-	pw, err := bcrypt.GenerateFromPassword(in, bcrypt.MinCost)
-	if err != nil {
-		w.Error(err, http.StatusInternalServerError)
-		return
-	}
-
 	w.JSON(Output{
-		Hashed: string(pw),
+		Hashed: Password(input.Password),
 	})
 	return
 }
 
-// CheckCrypt compares the hashed and password and returns nil on success
-func CheckCrypt(hashed, password string) error {
+// Password hashes a password
+func Password(password string) string {
+	buf, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.MinCost)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return string(buf)
+}
+
+// Check compares the hashed and password and returns nil on success
+func Check(hashed, password string) error {
 	return bcrypt.CompareHashAndPassword([]byte(hashed), []byte(password))
 }

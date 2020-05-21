@@ -32,13 +32,15 @@ type Output struct {
 func Authenticate(w wrap.ResponseWriter, r *wrap.Request) {
 	var secret jwt.Secret
 	if err := r.ParseHeader("hasura-graphql-jwt-secret", &secret); err != nil {
-		w.Error(err, http.StatusInternalServerError)
+		w.Error(fmt.Errorf("syntax error in hasura-graphql-jwt-secret"), http.StatusInternalServerError)
+		return
 	}
 
 	var d db.Database
 	if r.HasHeader("x-htpasswd") {
 		if err := r.ParseHeader("x-htpasswd", &d); err != nil {
-			w.Error(err, http.StatusInternalServerError)
+			w.Error(fmt.Errorf("syntax error in x-htpasswd"), http.StatusInternalServerError)
+			return
 		}
 	} else {
 		d = db.DefaultDatabase()

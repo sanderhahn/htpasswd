@@ -18,7 +18,7 @@ type Database []User
 
 // DefaultDatabase has a static database of user entries
 func DefaultDatabase() Database {
-	secret := "$2a$04$ZzOQ3ySZgNsdnv6atx4mv.gnTwexIGoO.BweNz56E8oiHheauOBPe"
+	secret := crypt.Password("secret")
 	return Database{
 		{
 			Username: "user",
@@ -61,7 +61,7 @@ func (d *Database) LookupUser(username string) *User {
 // Authenticate checks for the correct authentication
 func (d *Database) Authenticate(username, password string) *User {
 	user := d.LookupUser(username)
-	if user != nil && crypt.CheckCrypt(user.Password, password) == nil {
+	if user != nil && crypt.Check(user.Password, password) == nil {
 		return user
 	}
 	return nil
