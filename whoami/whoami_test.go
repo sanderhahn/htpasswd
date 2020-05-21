@@ -32,3 +32,17 @@ func TestWhoami(t *testing.T) {
 		t.Fail()
 	}
 }
+
+func TestWhoamiAdmin(t *testing.T) {
+	w := &wraptest.MockResponseWriter{}
+	r := wraptest.NewRequest(t, "whoami", Input{}, wrap.SessionVariables{
+		"x-hasura-role": "admin",
+	})
+
+	Whoami(w, r)
+
+	out := w.Output.(Output)
+	if out.Role != "admin" {
+		t.Fail()
+	}
+}

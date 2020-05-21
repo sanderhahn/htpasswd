@@ -20,13 +20,14 @@ type Output struct {
 // Whoami shows the username/role based on the session variables
 func Whoami(w wrap.ResponseWriter, r *wrap.Request) {
 	username := r.Payload.SessionVariables["x-hasura-user-id"]
-	if username == "" {
+	role := r.Payload.SessionVariables["x-hasura-role"]
+	if username == "" && role != "admin" {
 		w.Error(fmt.Errorf("Forbidden"), http.StatusForbidden)
 		return
 	}
 
 	w.JSON(Output{
 		Username: username,
-		Role:     r.Payload.SessionVariables["x-hasura-role"],
+		Role:     role,
 	})
 }
