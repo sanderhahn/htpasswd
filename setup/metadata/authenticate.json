@@ -1,0 +1,40 @@
+{
+  "type": "create_action",
+  "args": {
+    "name": "authenticate",
+    "definition": {
+      "arguments": [
+        {
+          "name": "username",
+          "type": "String!",
+          "description": null
+        },
+        {
+          "name": "password",
+          "type": "String!",
+          "description": null
+        }
+      ],
+      "kind": "synchronous",
+      "output_type": "AuthOutput",
+      "handler": "{{HTPASSWD_ACTION_URL}}",
+      "type": "query",
+      "headers": [
+        {
+          "name": "hasura-graphql-jwt-secret",
+          "value_from_env": "HASURA_GRAPHQL_JWT_SECRET"
+        },
+        {
+          "name": "x-htpasswd",
+          "value": "[{\"username\":\"user\",\"role\":\"user\",\"password\":\"$2a$04$iD.YYuXhNa0jtbGFUXUvlOnSKl9JMBr.GeW16ixOJrV7dhLxi8gt.\"},{\"username\":\"manager\",\"role\":\"manager\",\"password\":\"$2a$04$iD.YYuXhNa0jtbGFUXUvlOnSKl9JMBr.GeW16ixOJrV7dhLxi8gt.\"},{\"username\":\"admin\",\"role\":\"admin\",\"password\":\"$2a$04$iD.YYuXhNa0jtbGFUXUvlOnSKl9JMBr.GeW16ixOJrV7dhLxi8gt.\"}]"
+        },
+        {
+          "name": "x-debug",
+          "value": "true"
+        }
+      ],
+      "forward_client_headers": false
+    },
+    "comment": null
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "type": "create_action",
+  "args": {
+    "name": "whoami",
+    "definition": {
+      "arguments": [
+        {
+          "name": "whoami",
+          "type": "Boolean",
+          "description": null
+        }
+      ],
+      "kind": "synchronous",
+      "output_type": "WhoamiOutput",
+      "handler": "{{HTPASSWD_ACTION_URL}}",
+      "type": "query",
+      "headers": [
+        {
+          "name": "x-debug",
+          "value": "true"
+        }
+      ],
+      "forward_client_headers": false
+    },
+    "comment": null
+  }
+}

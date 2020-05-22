@@ -9,12 +9,12 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-// Input is input
+// Input struct
 type Input struct {
 	Password string `json:"password"`
 }
 
-// Output is output
+// Output struct
 type Output struct {
 	Hashed string `json:"hashed"`
 }

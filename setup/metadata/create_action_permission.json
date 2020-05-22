@@ -1,0 +1,12 @@
+{
+  "type": "create_action_permission",
+  "args": {
+    "action": "authenticate",
+    "role": "user",
+    "definition": {
+      "select": {
+        "filter": {}
+      }
+    }
+  }
+}

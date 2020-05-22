@@ -1,0 +1,27 @@
+{
+  "type": "create_action",
+  "args": {
+    "name": "crypt",
+    "definition": {
+      "arguments": [
+        {
+          "name": "password",
+          "type": "String!",
+          "description": null
+        }
+      ],
+      "kind": "synchronous",
+      "output_type": "CryptOutput!",
+      "handler": "{{HTPASSWD_ACTION_URL}}",
+      "type": "query",
+      "headers": [
+        {
+          "name": "x-debug",
+          "value": "true"
+        }
+      ],
+      "forward_client_headers": false
+    },
+    "comment": null
+  }
+}

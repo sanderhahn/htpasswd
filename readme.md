@@ -48,6 +48,14 @@ go run cmd/server/server.go
 go test ./...
 ```
 
+## Setup
+
+Python setup script is provided for quick setup of the actions and permissions.
+
+```bash
+python3 setup/setup.py --endpoint $HASURA_GRAPHQL_ENDPOINT --admin-secret $HASURA_GRAPHQL_ADMIN_SECRET
+```
+
 ## Demo
 
 ```graphql

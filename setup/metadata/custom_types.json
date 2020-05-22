@@ -1,0 +1,87 @@
+{
+  "type": "set_custom_types",
+  "args": {
+    "scalars": [],
+    "input_objects": [
+      {
+        "name": "AuthInput",
+        "fields": [
+          {
+            "name": "username",
+            "type": "String!",
+            "description": null
+          },
+          {
+            "name": "password",
+            "type": "String!",
+            "description": null
+          }
+        ],
+        "description": null
+      },
+      {
+        "name": "CryptInput",
+        "fields": [
+          {
+            "name": "password",
+            "type": "String!",
+            "description": null
+          }
+        ],
+        "description": null
+      }
+    ],
+    "objects": [
+      {
+        "name": "AuthOutput",
+        "fields": [
+          {
+            "name": "token",
+            "type": "String!",
+            "arguments": null,
+            "description": null
+          },
+          {
+            "name": "expires",
+            "type": "Int!",
+            "arguments": null,
+            "description": null
+          }
+        ],
+        "description": null,
+        "relationships": null
+      },
+      {
+        "name": "CryptOutput",
+        "fields": [
+          {
+            "name": "hashed",
+            "type": "String!",
+            "arguments": null,
+            "description": null
+          }
+        ],
+        "description": null,
+        "relationships": null
+      },
+      {
+        "name": "WhoamiOutput",
+        "description": null,
+        "fields": [
+          {
+            "name": "username",
+            "type": "String!",
+            "description": null
+          },
+          {
+            "name": "role",
+            "type": "String!",
+            "description": null
+          }
+        ],
+        "relationships": null
+      }
+    ],
+    "enums": []
+  }
+}
